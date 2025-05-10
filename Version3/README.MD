@@ -81,9 +81,3 @@ Choose a desired ASCII style.
 View the generated ASCII output.
 
 Copy and use it anywhere!
-
-
-👤 Author
-
-Developed by Tusup AL-Farabi
-
