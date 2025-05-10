@@ -1,0 +1,104 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Courier New', monospace;
+    background: url(/static/bg.gif) repeat center center;
+    background-size: cover;
+    background-color: #000000;
+    color: #00FF00; /* Зелёный цвет, характерный для "Матрицы" */
+    text-align: center;
+    padding: 40px 20px;
+    line-height: 1.6;
+}
+
+h1 {
+    font-size: 3em;
+    color: #00FF00;
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px #00FF00, 0 0 20px #00FF00, 0 0 30px #00FF00;
+}
+
+form {
+    background: #111;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+    display: inline-block;
+    text-align: left;
+    margin-top: 40px;
+    width: 100%;
+    max-width: 500px;
+    border: 2px solid #00FF00;
+}
+
+label {
+    font-weight: 500;
+    font-size: 1.2em;
+    display: block;
+    margin-top: 20px;
+    text-align: left;
+    color: #00FF00;
+    text-transform: uppercase;
+}
+
+textarea, input, select {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    border: 2px solid #00FF00;
+    border-radius: 8px;
+    font-size: 1em;
+    background-color: #222;
+    color: #00FF00;
+    transition: all 0.3s ease-in-out;
+}
+
+textarea:focus, input:focus, select:focus {
+    border-color: #00FF00;
+    outline: none;
+    background-color: #333;
+}
+
+button {
+    background: #00FF00;
+    color: black;
+    border: none;
+    padding: 15px;
+    margin-top: 20px;
+    width: 100%;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background 0.3s, transform 0.3s ease;
+}
+
+button:hover {
+    background: #00cc00;
+    transform: scale(1.05);
+}
+
+pre {
+    background: #111;
+    color: #00FF00;
+    padding: 30px;
+    border-radius: 8px;
+    display: inline-block;
+    text-align: left;
+    font-family: 'Courier New', monospace;
+    overflow-x: auto;
+    max-width: 100%;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    margin-top: 30px;
+    text-shadow: 0 0 10px #00FF00;
+}
+

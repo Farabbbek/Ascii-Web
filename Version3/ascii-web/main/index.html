@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ascii-Web</title>
+    <link  rel="stylesheet" href="style.css">
+    
+
+</head>
+<body>
+<div class="container_ascii"> 
+    <div class="ascii">
+        <label for="textinput">Write text</label>
+        <textarea id="textinput" placeholder="Write text here"></textarea>
+        <div id = "error" style = "color: red;"></div>
+        <style>
+          @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&family=Roboto+Slab:wght@100..900&display=swap');
+          </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      var os = navigator.platform.toLowerCase();
+      if (os.indexOf('mac') !== -1) {
+          document.body.classList.add('mac-os');
+      } else if (os.indexOf('win') !== -1) {
+          document.body.classList.add('windows-os');
+      }
+  });
+</script>
+        
+        <div class="radio-input">
+            <div class="glass">
+              <div class="glass-inner"></div>
+            </div>
+            <div class="selector">
+              <div class="choice">
+                <div>
+                  <input
+                    class="choice-circle"
+                    checked="true"
+                    value="one"
+                    name="number-selector"
+                    id="one"
+                    type="radio"
+                  />
+                  <div class="ball"></div>
+                </div>
+                <label for="one" class="choice-name">Thinkertoy</label>
+              </div>
+              <div class="choice">
+                <div>
+                  <input
+                    class="choice-circle"
+                    value="two"
+                    name="number-selector"
+                    id="two"
+                    type="radio"
+                  />
+                  <div class="ball"></div>
+                </div>
+                <label for="Two" class="choice-name">Shadow</label>
+              </div>
+              <div class="choice">
+                <div>
+                  <input
+                    class="choice-circle"
+                    value="three"
+                    name="number-selector"
+                    id="three"
+                    type="radio"
+                  />
+                  <div class="ball"></div>
+                </div>
+                <label for="three" class="choice-name">Standard</label>
+              </div>
+            </div>
+          </div>
+          <p class="output-label">Output</p>
+        <textarea id="output" class="output-box" readonly></textarea>
+    <button class="button">
+                        Generate
+                    </button>
+    </div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+      document.querySelector('.button').addEventListener('click', (e) => {
+          e.preventDefault();
+          const text = document.getElementById('textinput').value;
+          const font = document.querySelector('input[name="number-selector"]:checked').value;
+          
+          // Map the radio button values to the actual font names
+          let fontName;
+          switch (font) {
+              case 'one':
+                  fontName = 'thinkertoy';
+                  break;
+              case 'two':
+                  fontName = 'shadow';
+                  break;
+              default:
+                  fontName = 'standard';
+          }
+          
+          fetch('/ascii-web/', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+              body: new URLSearchParams({ text, font: fontName })
+          })
+          .then(response => {
+              if (!response.ok) {
+                  return response.text().then(err => {
+                      // Show error message under the text input.
+                      document.getElementById('error').textContent = err;
+                      return Promise.reject(err);
+                  });
+              }
+              // Clear previous error messages.
+              document.getElementById('error').textContent = "";
+              return response.text();
+          })
+          .then(result => {
+              document.getElementById('output').textContent = result;
+          })
+          .catch(err => console.error(err));
+      });
+  });
+</script>
+</body>
+</html>

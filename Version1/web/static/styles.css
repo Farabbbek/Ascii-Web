@@ -1,0 +1,644 @@
+/* Base Styles */
+html {
+  background-color: #1a191c;
+  color: white;
+  font-family: sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+/* Color Variables (from the original) */
+:root {
+  --white: #ffffff;
+  --grey10: #e8e1f0;
+  --grey15: #d9d9d9;
+  --grey25: #bdbdbd;
+  --black80: #272529;
+  --black85: #222024;
+  --teal60: #00d4a1;
+  --purple15: #caadff;
+  --blue: #1e90ff;
+  --purple: #7538ff;
+  --black30: #615f64;
+}
+
+.dark-theme {
+  --neutral: #e8e1f0;
+  --neutralFill: #d9d9d9;
+  --greyHighlighted: #e8e1f0;
+  --bgLevel1: #1a191c;
+  --bgLevel2: #222024;
+  --bgLevel3: #272529;
+  --textNeutral: #ffffff;
+  --textMinimal: #bdbdbd;
+}
+
+/* Utility Classes */
+.fixed-01 {
+  position: fixed;
+}
+.w100p-01 {
+  width: 100%;
+}
+.w50p-01 {
+  width: 50%;
+}
+.alignCenter-01 {
+  display: flex;
+  align-items: center;
+}
+.justifyCenter-01 {
+  justify-content: center;
+} /* Добавлено */
+.alignBaseline-01 {
+  display: flex;
+  align-items: baseline;
+}
+.justifyBetween-01 {
+  justify-content: space-between;
+}
+.justifyAround-01 {
+  justify-content: space-around;
+}
+.justifyEnd-01 {
+  justify-content: flex-end;
+}
+.flex-01 {
+  display: flex;
+}
+.flexColumn-01 {
+  display: flex;
+  flex-direction: column;
+}
+.mt2-01 {
+  margin-top: 0.75rem;
+}
+.mt3-01 {
+  margin-top: 1rem;
+}
+.mt7-01 {
+  margin-top: 35px;
+}
+.mt9-01 {
+  margin-top: 50px;
+}
+.mt10-01 {
+  margin-top: 60px;
+}
+.pv9-01 {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.pv11-01 {
+  padding-top: 75px;
+  padding-bottom: 75px;
+}
+.pv7_xs-01 {
+  padding-top: 35px;
+  padding-bottom: 35px;
+}
+.ph5-01 {
+  padding-left: 25px;
+  padding-right: 25px;
+}
+.ph12-01 {
+  padding-left: 100px;
+  padding-right: 100px;
+}
+.ph3_xs-01 {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.pl10-01 {
+  padding-left: 60px;
+}
+.pr9-01 {
+  padding-right: 50px;
+}
+.ml3-01 {
+  margin-left: 15px;
+}
+.ml4-01 {
+  margin-left: 20px;
+}
+.ml6-01 {
+  margin-left: 30px;
+}
+.ml1-01 {
+  margin-left: 5px;
+}
+.mlAuto-01 {
+  margin-left: auto;
+}
+.mr3-01 {
+  margin-right: 15px;
+}
+.mr6-01 {
+  margin-right: 30px;
+}
+.mr8-01 {
+  margin-right: 40px;
+}
+.mr2-01 {
+  margin-right: 10px;
+}
+.mh2-01 {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.mh3-01 {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+.ma0-01 {
+  margin: 0;
+}
+.pl0-01 {
+  padding-left: 0;
+}
+.pb1-01 {
+  padding-bottom: 0.5rem;
+}
+.pbMin-01 {
+  padding-bottom: 5px;
+}
+.mb3-01 {
+  margin-bottom: 1rem;
+}
+.pa5-01 {
+  padding: 15px;
+}
+.t0-01 {
+  top: 0;
+}
+.l0-01 {
+  left: 0;
+}
+.zi9-01 {
+  z-index: 9;
+}
+.pointer-01 {
+  cursor: pointer;
+}
+.h100p-01 {
+  height: 100%;
+  width: auto;
+  max-width: 100px;
+}
+.w60p-01 {
+  width: 60%;
+}
+.w40p-01 {
+  width: 40%;
+}
+.fMono-01 {
+  font-family: monospace;
+}
+.fSans-01 {
+  font-family: sans-serif;
+}
+.fs1-01 {
+  font-size: 3rem;
+}
+.fs4-01 {
+  font-size: 0.85rem;
+}
+.fs5-01 {
+  font-size: 0.9rem;
+}
+.fs6-01 {
+  font-size: 0.8rem;
+}
+.fs7-01 {
+  font-size: 0.7rem;
+}
+.ls3-01 {
+  letter-spacing: 0.015em;
+}
+.lhDouble-01 {
+  line-height: 2;
+}
+.uppercase-01 {
+  text-transform: uppercase;
+}
+.capitalize-01 {
+  text-transform: capitalize;
+}
+.textNeutral-01 {
+  color: var(--black30);
+}
+.textMinimal-01 {
+  color: var(--textMinimal);
+}
+.textBlue-01 {
+  color: var(--blue);
+}
+.neutral-01 {
+  color: var(--neutral);
+}
+.teal-01 {
+  color: var(--teal60);
+}
+.borderTeal-01 {
+  border: 1px solid var(--teal60);
+}
+.bgLevel2-01 {
+  background-color: var(--bgLevel2);
+}
+.bgLevel3-01 {
+  background-color: var(--bgLevel3);
+}
+.bgGreyHighlighted-01 {
+  background-color: var(--greyHighlighted);
+}
+.borderDetailMinimal-01 {
+  border-bottom: 1px solid var(--textMinimal);
+}
+.light-01 {
+  font-weight: 300;
+}
+.regular-01 {
+  font-weight: 400;
+}
+.textCenter-01 {
+  text-align: center;
+}
+.alt-theme {
+  background-color: transparent;
+}
+
+/* Navigation Bar */
+nav {
+  background: linear-gradient(to bottom, hsl(0, 0%, 5%) 0%, rgba(0, 0, 0, 0.35) 59%, transparent 100%);
+  height: 70px;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  text-decoration: none;
+  font-family: monospace;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.nav-link:hover {
+  color: var(--textNeutral);
+  border-bottom: 1px solid var(--textNeutral);
+}
+
+.logout-btn {
+  background: none;
+  border: 1px solid var(--neutral);
+  color: var(--neutral);
+  cursor: pointer;
+  margin-left: 20px;
+  padding: 5px 10px;
+  text-transform: uppercase;
+  font-family: monospace;
+  font-size: 0.7rem;
+}
+
+/* Main Content and Sidebar Layout */
+.container {
+  display: flex;
+  width: 100%;
+  height: calc(100vh - 70px); /* Subtract nav height */
+  margin-top: 70px; /* Offset for fixed nav */
+}
+
+.main-content {
+  flex: 1;
+  min-width: 0;
+  overflow-y: auto; /* Allow scrolling if content overflows */
+}
+
+.divider {
+  width: 5px;
+  background-color: var(--grey25);
+  cursor: ew-resize; /* Horizontal resize cursor */
+  user-select: none;
+}
+
+.sidebar {
+  flex: 0 0 400px; /* Initial width */
+  background-color: var(--bgLevel2);
+  overflow-y: auto; /* Allow scrolling if content overflows */
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  margin-bottom: 20px;
+}
+
+.status {
+  color: var(--textNeutral);
+}
+
+.status-dot {
+  width: 15px;
+  height: 15px;
+  background-color: var(--white);
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.repo-link span {
+  font-family: monospace;
+  font-size: 0.9rem;
+}
+
+.repo-url {
+  text-decoration: none;
+  font-family: monospace;
+  font-size: 0.9rem;
+  text-transform: none;
+}
+
+.repo-url:hover {
+  text-decoration: underline;
+}
+
+.info-box {
+  padding: 30px;
+}
+
+/* Info Box Specific Styles */
+.bgGreyHighlighted-01 {
+  background-color: var(--greyHighlighted);
+}
+
+/* Markdown Body */
+.markdown-body h2 {
+  font-size: 1.5rem;
+  font-family: monospace;
+  margin-top: 2rem;
+}
+
+.markdown-body h3 {
+  font-size: 1.25rem;
+  font-family: monospace;
+  margin-top: 1.5rem;
+}
+
+.markdown-body p {
+  font-family: sans-serif;
+  line-height: 1.5;
+  font-size: 0.9rem;
+}
+
+/* Custom Content */
+.custom-content {
+  margin-top: 2rem;
+  padding: 20px;
+  border: 1px dashed var(--textMinimal);
+}
+
+.custom-heading {
+  color: var(--purple15);
+}
+
+/* ASCII Art Output - Обновленные стили */
+#ascii-art-container {
+  position: relative;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+#ascii-art-output {
+  width: 100%;
+  min-height: 300px;
+  max-height: 600px;
+  overflow-x: scroll; /* Принудительно показываем горизонтальную прокрутку */
+  overflow-y: auto;
+  white-space: pre; /* Сохраняем все пробелы и не переносим текст */
+  font-family: "Courier New", Courier, monospace;
+  color: var(--textNeutral);
+  background-color: var(--bgLevel3);
+  border: 1px solid var(--textMinimal);
+  padding: 15px;
+  resize: both;
+  box-sizing: border-box;
+  line-height: 1.2;
+  tab-size: 4;
+  /* Добавляем стили для скроллбара */
+  scrollbar-width: thin; /* Для Firefox */
+  scrollbar-color: var(--grey25) var(--bgLevel3); /* Для Firefox */
+}
+
+/* Стили для скроллбара в WebKit браузерах (Chrome, Safari) */
+#ascii-art-output::-webkit-scrollbar {
+  height: 10px; /* Высота горизонтального скроллбара */
+  width: 10px; /* Ширина вертикального скроллбара */
+}
+
+#ascii-art-output::-webkit-scrollbar-track {
+  background: var(--bgLevel3);
+}
+
+#ascii-art-output::-webkit-scrollbar-thumb {
+  background-color: var(--grey25);
+  border-radius: 5px;
+  border: 2px solid var(--bgLevel3);
+}
+
+#ascii-art-output::-webkit-scrollbar-thumb:hover {
+  background-color: var(--grey15);
+}
+
+/* Подсказка о прокрутке */
+#scroll-hint {
+  text-align: center;
+  font-size: 0.7rem;
+  color: var(--textMinimal);
+  margin-top: 5px;
+  font-family: monospace;
+}
+
+/* Индикаторы прокрутки */
+.scroll-indicator {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 15px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.scroll-indicator-left {
+  left: 0;
+  background: linear-gradient(to right, var(--bgLevel3) 0%, transparent 100%);
+}
+
+.scroll-indicator-right {
+  right: 0;
+  background: linear-gradient(to left, var(--bgLevel3) 0%, transparent 100%);
+}
+
+/* Sidebar */
+.group-member {
+  margin-bottom: 10px;
+}
+
+.group-member i {
+  color: var(--purple15);
+  margin-right: 5px;
+}
+
+.extra-rewards {
+  border: 1px solid var(--teal60);
+  padding: 2px 8px;
+  border-radius: 2px;
+  font-size: 0.55rem;
+  white-space: nowrap;
+  align-self: flex-start;
+}
+
+/* Кнопка просмотра на полной странице */
+#view-full-page {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: var(--blue);
+  color: var(--textNeutral);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: monospace;
+  display: none;
+  transition: background-color 0.3s;
+}
+
+#view-full-page:hover {
+  background-color: #0078d7;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .sidebar {
+    flex: 0 0 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .sidebar {
+    flex: none;
+    width: 100%;
+  }
+
+  .main-content {
+    padding: 20px;
+  }
+
+  .flexColumn_xs-01 {
+    flex-direction: column;
+  }
+
+  .pv7_xs-01 {
+    padding-top: 35px;
+    padding-bottom: 35px;
+  }
+
+  .ph3_xs-01 {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .justifyAround-01 {
+    justify-content: space-between;
+  }
+
+  .alt-theme > div {
+    margin-bottom: 20px;
+  }
+
+  #ascii-art-output {
+    font-size: 0.8rem;
+    padding: 10px;
+  }
+}
+
+.justifyCenter-01 {
+  justify-content: center;
+}
+
+.borderNeutral-01 {
+  border: 1px solid var(--neutral); /* Используем переменную из dark-theme */
+}
+
+.hoverBorderNeutral-01:hover {
+  border-color: var(--textNeutral); /* Белый цвет при наведении */
+}
+
+.focusBorderNeutral-01:focus {
+  border-color: var(--teal60); /* Бирюзовый при фокусе */
+  outline: none; /* Убираем стандартный outline */
+}
+
+/* Стили для полноэкранного режима */
+.fullscreen-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.fullscreen-btn {
+  background: none;
+  border: 1px solid var(--blue);
+  color: var(--blue);
+  padding: 5px 10px;
+  cursor: pointer;
+  font-family: monospace;
+  font-size: 0.8rem;
+  border-radius: 3px;
+  transition: all 0.2s;
+}
+
+.fullscreen-btn:hover {
+  background-color: var(--blue);
+  color: var(--textNeutral);
+}
+
+/* Стили для кнопки копирования */
+#copy-btn {
+  background-color: var(--teal60);
+  color: var(--textNeutral);
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-family: monospace;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+#copy-btn:hover {
+  background-color: #00b389;
+}
+
+/* Стили для индикатора размера */
+#size-indicator {
+  font-family: monospace;
+  font-size: 0.7rem;
+  color: var(--textMinimal);
+  margin-top: 5px;
+  text-align: right;
+}

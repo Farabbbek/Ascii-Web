@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Custom Project</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Добавляем встроенные стили для гарантии работы горизонтальной прокрутки -->
+    <style>
+        /* Критически важные стили для корректного отображения ASCII-арта */
+        #ascii-art-output {
+            white-space: pre !important; /* Принудительно сохраняем все пробелы */
+            overflow-x: scroll !important; /* Принудительно показываем горизонтальную прокрутку */
+            overflow-y: auto !important;
+            font-family: "Courier New", Courier, monospace !important;
+            line-height: 1.2 !important;
+            tab-size: 4 !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+        }
+        
+        /* Стили для скроллбара */
+        #ascii-art-output::-webkit-scrollbar {
+            height: 10px !important; /* Высота горизонтального скроллбара */
+            width: 10px !important; /* Ширина вертикального скроллбара */
+        }
+        
+        #ascii-art-output::-webkit-scrollbar-track {
+            background: #272529 !important;
+        }
+        
+        #ascii-art-output::-webkit-scrollbar-thumb {
+            background-color: #BDBDBD !important;
+            border-radius: 5px !important;
+            border: 2px solid #272529 !important;
+        }
+        
+        #ascii-art-output::-webkit-scrollbar-thumb:hover {
+            background-color: #D9D9D9 !important;
+        }
+        
+        /* Стили для контейнера ASCII-арта */
+        #ascii-art-container {
+            position: relative;
+            width: 100%;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+        
+        /* Подсказка о прокрутке */
+        #scroll-hint {
+            text-align: center;
+            font-size: 0.7rem;
+            color: #BDBDBD;
+            margin-top: 5px;
+            font-family: monospace;
+        }
+        
+        /* Кнопка копирования */
+        #copy-btn {
+            background-color: #00D4A1;
+            color: #FFFFFF;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-family: monospace;
+            font-size: 0.8rem;
+            border-radius: 4px;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+            display: none;
+        }
+        
+        #copy-btn:hover {
+            background-color: #00b389;
+        }
+    </style>
+</head>
+<body class="dark-theme">
+    <!-- Navigation Bar -->
+    <nav class="fixed-01 w100p-01 alignCenter-01 t0-01 l0-01 zi9-01">
+        <div class="ml6-01 mr8-01 alignCenter-01">
+            <a href="https://01.tomorrow-school.ai/intra/astanahub/profile" style="height: 35px;">
+                <img alt="logo" src="https://01.tomorrow-school.ai/assets/img/logo.png" class="pointer-01 h100p-01">
+            </a>
+        </div>
+        <ul class="ma0-01 pl0-01 ml6-01 alignCenter-01">
+            <li><a href="#" class="nav-link textMinimal-01">intra</a></li>
+            <li class="textMinimal-01 mh2-01">></li>
+            <li><a href="https://01.tomorrow-school.ai/intra/astanahub/profile" class="nav-link textMinimal-01">astanahub</a></li>
+            <li class="textMinimal-01 mh2-01">></li>
+            <li><a href="https://01.tomorrow-school.ai/intra/astanahub/module/?event=96" class="nav-link textMinimal-01">module</a></li>
+            <li class="textMinimal-01 mh2-01">></li>
+            <li><a href="#" class="nav-link textMinimal-01">ascii-art-web</a></li>
+        </ul>
+        <div class="mlAuto-01 mr6-01 alignCenter-01">
+            <a href="https://01.tomorrow-school.ai/git/mmerekey" class="nav-link textMinimal-01">gitea</a>
+            <a href="#" class="nav-link textMinimal-01 ml4-01">mmerekey</a>
+            <button class="logout-btn">Logout</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="flex-01 w100p-01 container">
+        <!-- Left Section (Main Content) -->
+        <div class="main-content mt10-01 pv11-01 ph12-01">
+            <a href="#" class="back-link">
+                <span role="img" aria-label="back" class="mr3-01">←</span>
+                <span class="fMono-01 regular-01 fs5-01 textBlue-01">Back to graph</span>
+            </a>
+            <div class="alignBaseline-01 justifyBetween-01">
+                <h1 class="fMono-01 fs1-01 light-01">ascii-art-web</h1>
+                <div class="status alignCenter-01 fMono-01 uppercase-01 ls3-01 fs4-01">
+                    <div class="status-dot"></div>
+                    available
+                </div>
+            </div>
+            <div class="repo-link alignCenter-01 mt3-01">
+                <span class="textMinimal-01">Repo to create for this project</span>
+                <span class="mh3-01 textMinimal-01">→</span>
+                <a href="https://01.tomorrow-school.ai/git/dmedetov/ascii-art-web" class="repo-url textBlue-01">https://01.tomorrow-school.ai/git/dmedetov/ascii-art-web</a>
+            </div>
+            <div class="bgGreyHighlighted-01">
+                <div class="alt-theme mt9-01 pv9-01 pv7_xs-01 ph5-01 ph3_xs-01 justifyAround-01 alignBaseline-01 flexColumn_xs-01">
+                    <!-- Go Icon and Label -->
+                    <div class="flexColumn-01 alignCenter-01">
+                        <div class="alignCenter-01">
+                            <svg role="img" width="34" viewBox="0 0 130 130" aria-label="icon">
+                                <path fill="none" stroke="var(--purple)" stroke-width="6" d="M29.03 50.16L5 73.38l24.03 23.21M100.97 96.59L125 73.38l-24.03-23.22M79.21 31.63l-28.92 82.74"></path>
+                            </svg>
+                        </div>
+                        <div class="mt3-01 fMono-01 fs7-01 textNeutral-01">Go</div>
+                    </div>
+
+                    <!-- Size Icon and Label -->
+                    <div class="flexColumn-01 alignCenter-01">
+                        <div class="alignCenter-01">
+                            <svg role="img" width="34" viewBox="0 0 130 130" aria-label="icon">
+                                <circle cx="65" cy="65" r="55" fill="none" stroke="var(--purple)" stroke-width="5"></circle>
+                                <path fill="var(--purple)" d="M68.31 85.12H61l-8.63-14.37-9 14.37h-7.2l12.48-19.49-11.78-18.75h7.3l4.5 7.49 3.76 6.1 3.72-6.1 4.66-7.49H68L56.11 65.59zM93.35 50.63c-1.76-1.83-4.33-2.75-7.68-2.75H72.48v36.24h4.36V68.75h8.83c3.35 0 5.92-.91 7.68-2.75S96 61.6 96 58.32s-.88-5.85-2.65-7.69zm-2 9a5 5 0 01-1.53 3.92A6.23 6.23 0 0185.56 65h-8.72V51.67h8.72a6.18 6.18 0 014.29 1.38A5 5 0 0191.38 57z"></path>
+                                <path fill="var(--purple)" d="M77.84 85.12h-6.36V46.88h14.19c3.62 0 6.45 1 8.4 3.06C96 52 97 54.78 97 58.32s-1 6.35-2.93 8.37-4.78 3.06-8.4 3.06h-7.83zm0-21.16h7.72a5.3 5.3 0 003.62-1.12 4 4 0 001.2-3.17V57a4 4 0 00-1.2-3.17 5.3 5.3 0 00-3.62-1.12h-7.72z"></path>
+                            </svg>
+                        </div>
+                        <div class="mt3-01 fMono-01 fs7-01 textNeutral-01">9.20 kB</div>
+                    </div>
+
+                    <!-- Tech Icon and Details -->
+                    <div class="flexColumn-01 alignCenter-01">
+                        <div class="alignCenter-01">
+                            <svg role="img" width="32" viewBox="0 0 130 130" aria-label="icon">
+                                <path fill="none" stroke="var(--purple)" stroke-width="5" d="M30.11 12h69.78v44.85a27.5 27.5 0 0 1-27.5 27.5H57.61a27.5 27.5 0 0 1-27.5-27.5V12h0ZM32.02 117.96h63.43M100.2 23.45h20.3V33.6c0 14.72-5.58 26.64-20.3 26.64h0M29.8 23.45H9.5V33.6c0 14.72 5.58 26.64 20.3 26.64h0M71.34 87.52c0 14.71 9.39 30.44 24.11 30.44h0M56.12 87.52C56.12 102.23 46.73 118 32 118h0"></path>
+                            </svg>
+                        </div>
+                        <div class="mt3-01 fMono-01 fs7-01 textNeutral-01">
+                            <div class="pbMin-01 textCenter-01 flex-01 alignCenter-01 justifyCenter-01">
+                                go
+                                <div class="alignCenter-01 ml1-01 mr2-01">
+                                    <svg role="img" width="13" viewBox="0 0 130 130" aria-label="icon">
+                                        <path fill="none" stroke="black" stroke-width="5" d="M73 18l48 47-48 48M6 65h114"></path>
+                                    </svg>
+                                </div>
+                                35%
+                            </div>
+                            <div class="pbMin-01 textCenter-01 flex-01 alignCenter-01 justifyCenter-01">
+                                html
+                                <div class="alignCenter-01 ml1-01 mr2-01">
+                                    <svg role="img" width="13" viewBox="0 0 130 130" aria-label="icon">
+                                        <path fill="none" stroke="black" stroke-width="5" d="M73 18l48 47-48 48M6 65h114"></path>
+                                    </svg>
+                                </div>
+                                10%
+                            </div>
+                            <div class="pbMin-01 textCenter-01 flex-01 alignCenter-01 justifyCenter-01">
+                                back-end
+                                <div class="alignCenter-01 ml1-01 mr2-01">
+                                    <svg role="img" width="13" viewBox="0 0 130 130" aria-label="icon">
+                                        <path fill="none" stroke="black" stroke-width="5" d="M73 18l48 47-48 48M6 65h114"></path>
+                                    </svg>
+                                </div>
+                                10%
+                            </div>
+                            <div class="pbMin-01 textCenter-01 flex-01 alignCenter-01 justifyCenter-01">
+                                front-end
+                                <div class="alignCenter-01 ml1-01 mr2-01">
+                                    <svg role="img" width="13" viewBox="0 0 130 130" aria-label="icon">
+                                        <path fill="none" stroke="black" stroke-width="5" d="M73 18l48 47-48 48M6 65h114"></path>
+                                    </svg>
+                                </div>
+                                10%
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Team Icon and Details -->
+                    <div class="flexColumn-01 alignCenter-01">
+                        <div class="alignCenter-01">
+                            <svg role="img" width="30" viewBox="0 0 130 130" aria-label="icon">
+                                <g fill="none" stroke="var(--purple)" stroke-width="6">
+                                    <circle cx="64" cy="42" r="34"></circle>
+                                    <path d="M81 72c18 6 32 27 32 50H17c0-23 13-43 31-50"></path>
+                                </g>
+                            </svg>
+                        </div>
+                        <div class="mt3-01 fMono-01 fs7-01 textNeutral-01">
+                            <div class="alignCenter-01">
+                                2
+                                <div class="alignCenter-01 mh2-01">
+                                    <svg role="img" width="13" viewBox="0 0 130 130" aria-label="icon">
+                                        <path fill="none" stroke="black" stroke-width="5" d="M73 18l48 47-48 48M6 65h114"></path>
+                                    </svg>
+                                </div>
+                                3
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Type Icon and Label -->
+                    <div class="flexColumn-01 alignCenter-01 capitalize-01">
+                        <div class="alignCenter-01">
+                            <svg role="img" width="30" viewBox="0 0 130 130" aria-label="icon">
+                                <g fill="none" stroke="var(--purple)" stroke-width="6">
+                                    <polygon points="24.5 6.04 105.5 6.04 105.5 86.21 65 124.9 24.5 86.21 24.5 6.04"></polygon>
+                                    <circle cx="65" cy="81.94" r="9.21"></circle>
+                                </g>
+                            </svg>
+                        </div>
+                        <div class="mt3-01 fMono-01 fs7-01 textNeutral-01">Mandatory</div>
+                    </div>
+                </div>
+            </div>
+            <div class="markdown-body mt9-01">
+                <h2>ascii-art-web</h2>
+                <h3>Objectives</h3>
+                <p>Ascii-art-web consists in creating and running a server, in which it will be possible to use a web GUI (graphical user interface) version of your last project, ascii-art.</p>
+                
+                <!-- Integrated ASCII Art Generator -->
+                <div class="custom-content">
+                    <h2 class="custom-heading">ASCII Art Generator</h2>
+                    
+                    <!-- Form for input text and banner selection -->
+                    <form id="ascii-art-form" class="flexColumn-01" method="post" action="/generate-ascii">
+                        <label for="text" class="fSans-01 fs6-01 textNeutral-01">Enter Text:</label>
+                        <textarea id="text-input" name="text" rows="4" cols="50" class="mt2-01 fMono-01 fs6-01" style="background-color: var(--bgLevel3); color: var(--textNeutral); border: 1px solid var(--textMinimal); padding: 10px; resize: vertical; overflow-y: auto; max-height: 200px;"></textarea>
+                        <p class="fSans-01 fs7-01 textMinimal-01">Используйте \n для переноса строки</p>
+                        
+                        <label for="banner" class="fSans-01 fs6-01 textNeutral-01 mt3-01">Choose a banner:</label>
+                        <select id="banner-select" name="banner" class="mt2-01 fMono-01 fs6-01" style="background-color: var(--bgLevel3); color: var(--textNeutral); border: 1px solid var(--textMinimal); padding: 5px;">
+                            <option value="standard">Standard</option>
+                            <option value="shadow">Shadow</option>
+                            <option value="thinkertoy">Thinkertoy</option>
+                        </select>
+                        
+                        <button type="submit" id="generate-btn" class="mt3-01 fMono-01 fs6-01 textNeutral-01 bgLevel3-01" style="padding: 10px 20px; border: 1px solid var(--textMinimal); cursor: pointer;">Generate ASCII Art</button>
+                    </form>
+                
+                    <!-- Контейнер для ASCII-арта с горизонтальной прокруткой -->
+                    <h3 class="fMono-01 fs5-01 textNeutral-01 mt3-01">Generated ASCII Art:</h3>
+                    <div id="ascii-art-container">
+                        <textarea id="ascii-art-output" class="fMono-01 fs6-01 textNeutral-01" readonly style="display: none;"></textarea>
+                        <div id="scroll-hint" style="display: none;">← Используйте горизонтальную прокрутку для просмотра всего ASCII-арта →</div>
+                    </div>
+                    <div class="flex-01 justifyBetween-01 alignCenter-01">
+                        <button id="view-full-page" class="fMono-01 fs6-01">View Full Page</button>
+                        <button id="copy-btn" class="fMono-01 fs6-01">Копировать ASCII-арт</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="divider" id="divider"></div>
+
+        <!-- Right Section (Your Group Sidebar) -->
+        <div class="sidebar pv9-01 pl10-01 pr9-01 bgLevel2-01" id="sidebar">
+            <div class="w100p-01 bb-01 borderDetailMinimal-01 pb1-01 mb3-01">
+                <span class="fMono-01 ls3-01 neutral-01 fs4-01 light-01">Your group</span>
+            </div>
+            <div class="group-member bgLevel3-01 pa5-01 alignCenter-01 borderDetailMinimal-01 justifyBetween-01">
+                <div class="member-info flex-01 alignCenter-01">
+                    <div class="name-section flexColumn-01 mr3-01">
+                        <div class="alignCenter-01">
+                            <span class="fSans-01 regular-01 neutral-01 fs6-01 ls3-01">Dastan Medetov</span>
+                            <i class="fas fa-crown ml1-01 icon-small"></i>
+                        </div>
+                        <div class="extra-rewards fMono-01 regular-01 fs7-01 ls1-01 uppercase-01 pv1-01 ph3-01 teal-01 borderTeal-01 mt1-01">Extra Rewards</div>
+                    </div>
+                    <div class="handle-section alignCenter-01">
+                        <i class="fas fa-hashtag mr1-01 icon-small"></i>
+                        <span class="fSans-01 regular-01 neutral-01 fs6-01 ls3-01">dmedetov</span>
+                    </div>
+                </div>
+            </div>
+            <div class="group-member bgLevel3-01 pa5-01 alignCenter-01 borderDetailMinimal-01 justifyBetween-01">
+                <div class="member-info flex-01 alignCenter-01">
+                    <div class="name-section mr3-01">
+                        <span class="fSans-01 regular-01 neutral-01 fs6-01 ls3-01">Mertay Merekeyev</span>
+                    </div>
+                    <div class="handle-section alignCenter-01">
+                        <i class="fas fa-hashtag mr1-01 icon-small"></i>
+                        <span class="fSans-01 regular-01 neutral-01 fs6-01 ls3-01">mmerekey</span>
+                    </div>
+                </div>
+                <div></div> <!-- Empty div to maintain layout -->
+            </div>
+            <div class="mt7-01 description">
+                <p class="textNeutral-01 fSans-01 fs6-01">The captain of the group is the only one who can submit the project to audit. Refer to him to launch the process!</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
